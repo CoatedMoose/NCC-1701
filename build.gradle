@@ -1,0 +1,9 @@
+group 'com.coatedmoose.ncc-1701'
+version '1.0-SNAPSHOT'
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
