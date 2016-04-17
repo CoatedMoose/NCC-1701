@@ -116,10 +116,6 @@ public final class Bool implements Serializable, Comparable<Bool>, Closeable {
         return isEqual ? 0 : 1;
     }
 
-    private static Bool toBool(String booleanString) {
-        return new Bool(booleanString != null && booleanString.equalsIgnoreCase("true"));
-    }
-
     static Bool getTrue() {
         try {
             BooleanIOBoolean body = getService().updateBool(TRUE_BOOLEAN_ID, true).execute().body();
@@ -159,5 +155,12 @@ public final class Bool implements Serializable, Comparable<Bool>, Closeable {
     @Override
     public void close() throws IOException {
         service.deleteBool(id).execute();
+        System.err.println(String.format("Deleting boolean with ID: %s", id));
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        close();
+        super.finalize();
     }
 }

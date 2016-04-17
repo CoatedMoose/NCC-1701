@@ -21,16 +21,18 @@ public class BoolTest {
 
     @Test
     public void testNewTrue() throws Exception {
-        Bool truthy = new Bool(true);
-        assertThat(truthy, equalTo(TRUE));
-        assertThat(truthy, not(equalTo(FALSE)));
+        try (Bool truthy = new Bool(true)) {
+            assertThat(truthy, equalTo(TRUE));
+            assertThat(truthy, not(equalTo(FALSE)));
+        }
     }
 
     @Test
     public void testNewFalse() throws Exception {
-        Bool falsey = new Bool(false);
-        assertThat(falsey, equalTo(FALSE));
-        assertThat(falsey, not(equalTo(TRUE)));
+        try (Bool falsey = new Bool(false)) {
+            assertThat(falsey, equalTo(FALSE));
+            assertThat(falsey, not(equalTo(TRUE)));
+        }
     }
 
     @Test
@@ -45,10 +47,11 @@ public class BoolTest {
 
     @Test
     public void testUpdate() throws Exception {
-        Bool truthyCopy = new Bool(TRUE);
-        assertThat(truthyCopy, equalTo(TRUE));
-        truthyCopy.set(FALSE);
-        assertThat(truthyCopy, equalTo(FALSE));
+        try (Bool truthyCopy = new Bool(TRUE)) {
+            assertThat(truthyCopy, equalTo(TRUE));
+            truthyCopy.set(FALSE);
+            assertThat(truthyCopy, equalTo(FALSE));
+        }
     }
 
     @Test
